@@ -4,7 +4,7 @@ create table especie (
   nome_cientifico varchar(60) not null,
 
   primary key (id)
-);
+)engine=InnoDB default charset=utf8;
 
 alter table especie
 add constraint uk_especie unique (nome);
@@ -16,11 +16,7 @@ create table federacao (
   nome varchar(60) not null,
 
   primary key (id)
-);
-
-alter table federacao
-add constraint uk_federacao unique (codigo);
-
+)engine=InnoDB default charset=utf8;
 
 create table clube (
   id bigint not null auto_increment,
@@ -28,11 +24,7 @@ create table clube (
   nome varchar(60) not null,
 
   primary key (id)
-);
-
-alter table clube
-add constraint uk_clube unique (codigo);
-
+)engine=InnoDB default charset=utf8;
 
 create table criador (
   id bigint not null auto_increment,
@@ -42,5 +34,3 @@ create table criador (
   primary key (id)
 );
 
-alter table criador
-add constraint uk_criador unique (codigo);
