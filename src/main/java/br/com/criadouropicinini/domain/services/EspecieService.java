@@ -1,5 +1,6 @@
 package br.com.criadouropicinini.domain.services;
 
+import br.com.criadouropicinini.domain.exceptions.EntityInUseException;
 import br.com.criadouropicinini.domain.exceptions.EspecieNotFoundException;
 import br.com.criadouropicinini.domain.models.Especie;
 import br.com.criadouropicinini.domain.repositories.EspecieRepository;
@@ -12,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class EspecieService {
 
+    public static final String ESPECIE_EM_USE
+            = "Espécie com o código %d não pode ser removida, pois esta em uso";
     @Autowired
     private EspecieRepository especieRepository;
 
@@ -35,7 +38,7 @@ public class EspecieService {
         } catch (EmptyResultDataAccessException e) {
             throw new EspecieNotFoundException(especieId);
         } catch (DataIntegrityViolationException e) {
-            // throw new EntityInUseException(String.format(KITCHEN_IN_USE, kitchenId));
+             throw new EntityInUseException(String.format(ESPECIE_EM_USE, especieId));
         }
     }
 }

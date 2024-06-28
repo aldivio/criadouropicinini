@@ -7,7 +7,7 @@ public abstract class EntityNotFoundException extends BusinessException {
     private static final long serialVersionUID = 1L;
 
 
-    public EntityNotFoundException(String mensage){
+    public EntityNotFoundException(String mensage) {
         super(mensage);
     }
 

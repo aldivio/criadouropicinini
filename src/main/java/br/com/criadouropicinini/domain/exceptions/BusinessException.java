@@ -1,7 +1,7 @@
 package br.com.criadouropicinini.domain.exceptions;
 
 //@ResponseStatus(value = HttpStatus.BAD_REQUEST)
-public class BusinessException extends RuntimeException{
+public class BusinessException extends RuntimeException {
     public BusinessException(String message) {
         super(message);
     }

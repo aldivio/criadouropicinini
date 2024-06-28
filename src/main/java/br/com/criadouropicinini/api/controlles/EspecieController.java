@@ -7,7 +7,6 @@ import br.com.criadouropicinini.api.dtos.model.EspecieModel;
 import br.com.criadouropicinini.domain.models.Especie;
 import br.com.criadouropicinini.domain.repositories.EspecieRepository;
 import br.com.criadouropicinini.domain.services.EspecieService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -41,23 +40,24 @@ public class EspecieController {
         List<Especie> especieTotal = especieRepository.findAll();
         return especieRepository.findAll();
     }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public EspecieModel save(@RequestBody EspecieInput especieInput) {
-        System.out.println("AKI ---> " + especieInput.toString());
-            Especie especie = especieInputDisassembler.toDomainObject(especieInput);
-            return especieAssembler.toModel(especieService.save(especie));
+        Especie especie = especieInputDisassembler.toDomainObject(especieInput);
+        return especieAssembler.toModel(especieService.save(especie));
 
     }
 
     @PutMapping("/{especieId}")
     public EspecieModel update(@PathVariable Long especieId,
-                               @RequestBody  EspecieInput especieInput) {
+                               @RequestBody EspecieInput especieInput) {
         Especie especieCurrent = especieService.consultaById(especieId);
         especieInputDisassembler.copyToDomainObjtect(especieInput, especieCurrent);
         especieCurrent = especieService.save(especieCurrent);
         return especieAssembler.toModel(especieCurrent);
     }
+
     @DeleteMapping("/{especieId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long especieId) {
