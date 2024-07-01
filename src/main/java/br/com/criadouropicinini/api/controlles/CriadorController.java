@@ -45,7 +45,9 @@ public class CriadorController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CriadorModel save(@RequestBody @Valid CriadorInput criadorInput) {
+
         Criador criador = criadorInputDisassembler.toDomainObject(criadorInput);
+
         return criadorModelAssembler.toModel(criadorService.save(criador));
 
     }
@@ -64,6 +66,4 @@ public class CriadorController {
     public void delete(@PathVariable Long criadorId) {
         criadorService.remove(criadorId);
     }
-
-
 }
