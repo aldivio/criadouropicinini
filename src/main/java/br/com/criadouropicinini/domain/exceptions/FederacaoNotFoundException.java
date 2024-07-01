@@ -8,8 +8,8 @@ public class FederacaoNotFoundException extends EntityNotFoundException {
         super(mensage);
     }
 
-    public FederacaoNotFoundException(Long especieId) {
-        this(String.format("Este código %d da federação não existe", especieId));
+    public FederacaoNotFoundException(Long federacaoId) {
+        this(String.format("Este código %d da federação não existe", federacaoId));
     }
 }
 

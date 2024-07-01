@@ -29,7 +29,8 @@ public class ClubeService {
         Optional<Clube> clubeExistente = clubeRepository.findByCodigo(clube.getCodigo());
         if (clubeExistente.isPresent() && !clubeExistente.get().equals(clube)) {
             throw new BusinessException(
-                    String.format("A clube " + clube.getCodigo() + " já esta cadastrado em nosso sistema."));
+                    String.format("O clube com o código " + clube.getCodigo()
+                            + " já esta cadastrado em nosso sistema."));
         }
 
         return clubeRepository.save(clube);
