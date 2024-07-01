@@ -6,10 +6,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class EspecieInput {
+public class FederacaoInput {
 
-    @NotBlank
-    private String nome;
-    @NotBlank
-    private String nomeCientifico;
+   @NotBlank
+   private String codigo;
+
+   @NotBlank
+   private String nome;
 }

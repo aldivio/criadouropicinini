@@ -1,12 +1,13 @@
 package br.com.criadouropicinini.api.controlles;
 
-import br.com.criadouropicinini.api.assembler.EspecieAssembler;
+import br.com.criadouropicinini.api.assembler.EspecieModelAssembler;
 import br.com.criadouropicinini.api.assembler.EspecieInputDisassembler;
 import br.com.criadouropicinini.api.dtos.input.EspecieInput;
 import br.com.criadouropicinini.api.dtos.model.EspecieModel;
 import br.com.criadouropicinini.domain.models.Especie;
 import br.com.criadouropicinini.domain.repositories.EspecieRepository;
 import br.com.criadouropicinini.domain.services.EspecieService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class EspecieController {
     private EspecieRepository especieRepository;
 
     @Autowired
-    private EspecieAssembler especieAssembler;
+    private EspecieModelAssembler especieModelAssembler;
 
     @Autowired
     private EspecieInputDisassembler especieInputDisassembler;
@@ -43,19 +44,19 @@ public class EspecieController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public EspecieModel save(@RequestBody EspecieInput especieInput) {
+    public EspecieModel save(@RequestBody @Valid EspecieInput especieInput) {
         Especie especie = especieInputDisassembler.toDomainObject(especieInput);
-        return especieAssembler.toModel(especieService.save(especie));
+        return especieModelAssembler.toModel(especieService.save(especie));
 
     }
 
     @PutMapping("/{especieId}")
     public EspecieModel update(@PathVariable Long especieId,
-                               @RequestBody EspecieInput especieInput) {
+                               @RequestBody @Valid EspecieInput especieInput) {
         Especie especieCurrent = especieService.consultaById(especieId);
         especieInputDisassembler.copyToDomainObjtect(especieInput, especieCurrent);
         especieCurrent = especieService.save(especieCurrent);
-        return especieAssembler.toModel(especieCurrent);
+        return especieModelAssembler.toModel(especieCurrent);
     }
 
     @DeleteMapping("/{especieId}")
