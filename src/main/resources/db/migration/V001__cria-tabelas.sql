@@ -127,7 +127,11 @@ create table passaro (
   situacao varchar(15)default 'A VENDA',
   observacao varchar(255),
 
-  primary key (id)
+  primary key (id),
+constraint fk_passaro_especie foreign key (especie_id) references especie (id),
+constraint fk_passaro_federacao foreign key (federacao_id) references federacao (id),
+constraint fk_passaro_clube foreign key (clube_id) references clube (id),
+constraint fk_passaro_criador foreign key (criador_id) references criador (id)
 )engine=InnoDB default charset=utf8;
 
 alter table passaro

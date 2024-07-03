@@ -9,7 +9,7 @@ public class ClubeNotFoundException extends EntityNotFoundException {
     }
 
     public ClubeNotFoundException(Long clubeId) {
-        this(String.format("Este código %d do clube não existe", clubeId));
+        this(String.format("Este código %d do clube não existe.", clubeId));
     }
 }
 

@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class FederacaoModel {
 
-
+    private Long id;
     private String codigo;
 
 

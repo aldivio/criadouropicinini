@@ -9,7 +9,7 @@ public class EspecieNotFoundException extends EntityNotFoundException {
     }
 
     public EspecieNotFoundException(Long especieId) {
-        this(String.format("Este código %d da especie não existe", especieId));
+        this(String.format("Este código %d da especie não existe.", especieId));
     }
 }
 

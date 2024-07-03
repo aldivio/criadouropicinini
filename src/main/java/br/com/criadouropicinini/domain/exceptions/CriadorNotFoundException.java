@@ -9,7 +9,7 @@ public class CriadorNotFoundException extends EntityNotFoundException {
     }
 
     public CriadorNotFoundException(Long criadorId) {
-        this(String.format("Este código %d do criador não existe", criadorId));
+        this(String.format("Este código %d do criador não existe.", criadorId));
     }
 }
 

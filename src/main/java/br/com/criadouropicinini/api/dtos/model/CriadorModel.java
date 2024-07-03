@@ -8,6 +8,8 @@ import lombok.Setter;
 @Setter
 public class CriadorModel {
 
+
+    private Long id;
     private String codigo;
 
 

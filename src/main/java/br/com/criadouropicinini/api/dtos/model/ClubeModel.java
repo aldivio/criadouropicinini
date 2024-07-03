@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 public class ClubeModel {
 
+    private Long id;
     private String codigo;
 
 
