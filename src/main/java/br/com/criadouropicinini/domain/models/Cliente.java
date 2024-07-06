@@ -1,8 +1,12 @@
 package br.com.criadouropicinini.domain.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -39,4 +43,7 @@ public class Cliente {
     @Column(name = "observacao")
     private String observacao;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "cliente")
+    private List<Passaro> passaros = new ArrayList<>();
 }

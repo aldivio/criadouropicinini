@@ -28,14 +28,10 @@ public class CriadorService {
 
         Optional<Criador> criadorExistente = criadorRepository.findByCodigo(criador.getCodigo());
         if (criadorExistente.isPresent() && !criadorExistente.get().equals(criador)) {
-        System.out.println("AKI - 1 --- " + criador.getCodigo().toString());
-
             throw new BusinessException(
                     String.format("O criador com o código" + criador.getCodigo() + "" +
                             " já está cadastrado em nosso sistema."));
         }
-        System.out.println("AKI --- " + criador.getCodigo().toString());
-
         return criadorRepository.save(criador);
     }
 
@@ -56,5 +52,6 @@ public class CriadorService {
             throw new EntityInUseException(String.format(CRIADOR_EM_USO, criadorId));
         }
     }
+
 
 }

@@ -31,17 +31,21 @@ public class ClienteService {
     }
 
     public Cliente consultaById(long clienteId) {
+        System.out.println("AKI --- > " + clienteId);
+
         return clienteRepository.findById(clienteId)
                 .orElseThrow(() -> new ClienteNotFoundException(clienteId));
     }
 
     @Transactional
     public void remove(Long clienteId) {
-
         try {
+            System.out.println("AKI --- > " + clienteId);
             clienteRepository.deleteById(clienteId);
             clienteRepository.flush();
         } catch (EmptyResultDataAccessException e) {
+
+
             throw new ClienteNotFoundException(clienteId);
         }
     }
