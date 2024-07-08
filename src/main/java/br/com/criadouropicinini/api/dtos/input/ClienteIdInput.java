@@ -1,5 +1,7 @@
 package br.com.criadouropicinini.api.dtos.input;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,5 +9,6 @@ import lombok.Setter;
 @Setter
 public class ClienteIdInput {
 
+    @NotNull
     private Long id;
 }

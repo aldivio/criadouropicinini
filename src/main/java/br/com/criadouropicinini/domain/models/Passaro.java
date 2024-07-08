@@ -74,9 +74,10 @@ public class Passaro {
     @Column(name = "causa_obito", nullable = false)
     private String causaObito;
 
-    //private passaro_pai_id bigint,
-    //passaro_mae_id bigint,
-
+   /* @Column(name = "passaro_pai_id")
+    private int passaroPaiId ;
+    @Column(name = "passaro_mae_id")
+    private int passaroMaeId;*/
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente  cliente;

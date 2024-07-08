@@ -7,7 +7,11 @@ import br.com.criadouropicinini.domain.models.Situacao;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -17,14 +21,25 @@ import java.time.OffsetDateTime;
 @Setter
 public class PassaroInput {
 
+    @NotNull
+    @Valid
     private EspecieIdInput especie;
+    @NotNull
+    @Valid
     private FederacaoIdInput federacao;
+    @NotNull
+    @Valid
     private ClubeIdInput  clube;
+    @NotNull
+    @Valid
     private CriadorIdInput criador;
+    @NotBlank
     private String numeroAnel;
+    @NotBlank
     private String ano;
+    @NotBlank
     private String tamanhoAnel;
-    //private String anilha;
+    @NotBlank
     private String nome;
     private Sexo sexo;
     private int numeroSexagem;
@@ -33,8 +48,8 @@ public class PassaroInput {
     private OffsetDateTime dataSaida;
     private OffsetDateTime dataObito;
     private String causaObito;
-    //passaro_pai_id bigint,
-    //passaro_mae_id bigint,
+//   private int passaroPaiId ;
+//    private int passaroMaeId;
     private ClienteIdInput cliente;
     private BigDecimal numeroCtp;
     private Situacao situacao;

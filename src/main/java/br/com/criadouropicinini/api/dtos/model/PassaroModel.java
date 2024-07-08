@@ -28,8 +28,8 @@ public class PassaroModel {
     private OffsetDateTime dataSaida;
     private OffsetDateTime dataObito;
     private String causaObito;
-    //passaro_pai_id bigint,
-    //passaro_mae_id bigint,
+//    private int passaroPaiId ;
+//    private int passaroMaeId;
     private ClienteModel cliente;
 
     private BigDecimal numeroCtp;
