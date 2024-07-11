@@ -1,5 +1,6 @@
 package br.com.criadouropicinini.domain.services;
 
+import br.com.criadouropicinini.api.dtos.input.PassaroInput;
 import br.com.criadouropicinini.domain.exceptions.BusinessException;
 import br.com.criadouropicinini.domain.exceptions.ClienteNotFoundException;
 import br.com.criadouropicinini.domain.exceptions.PassaroNotFoundException;
@@ -44,6 +45,19 @@ public class PassaroService {
         }
         return passaroRepository.save(passaro);
     }
+    @Transactional
+    public Passaro update(Passaro passaro) {
+        Optional<Passaro> passaroExistente = passaroRepository.findByAnilha(passaro.getAnilha());
+        buscaId(passaro);
+        geradorAnilha(passaro);
+        if (passaroExistente.isPresent() && !passaroExistente.get().equals(passaro)) {
+            throw new BusinessException(
+                    String.format("Passaro com esta anilha de registro "
+                            + passaro.getAnilha() + " já esta cadastrado em nosso sistema. "));
+        }
+
+        return passaroRepository.save(passaro);
+    }
 
 
     public Passaro consultaById(long passaroId) {
@@ -68,6 +82,7 @@ public class PassaroService {
         Long federacaoId = passaro.getFederacao().getId();
         Long criadorId = passaro.getCriador().getId();
         Long clienteId = passaro.getCliente().getId();
+        PassaroInput passaroInput = new PassaroInput();
 
         Especie especie = especieService.consultaById(especieId);
         Clube clube = clubeService.consultaById(clubeId);
@@ -75,17 +90,17 @@ public class PassaroService {
         Criador criador = criadorService.consultaById(criadorId);
         Cliente cliente = clienteService.consultaById(clienteId);
 
-
         passaro.setEspecie(especie);
         passaro.setClube(clube);
         passaro.setFederacao(federacao);
         passaro.setCriador(criador);
         passaro.setCliente(cliente);
+
     }
 
     public void geradorAnilha(Passaro passaro){
 
-       passaro.setAnilha(passaro.getEspecie().getNome() + " " + passaro.getAno() + " " + passaro.getNumeroAnel()
+       passaro.setAnilha(passaro.getEspecie().getId() + " " + passaro.getAno() + " " + passaro.getNumeroAnel()
                + " " + passaro.getTamanhoAnel() + " " + passaro.getFederacao().getCodigo()
                + " " + passaro.getClube().getCodigo()
                + " " + passaro.getCriador().getCodigo()

@@ -22,4 +22,7 @@ public class Federacao {
     @Column(name = "nome")
     private String nome;
 
+    public Federacao(Long id) {
+        this.id = id;
+    }
 }

@@ -24,5 +24,8 @@ public class Criador {
     private String nome;
 
 
+    public Criador(Long id) {
+        this.id = id;
 
+    }
 }

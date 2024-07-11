@@ -1,5 +1,6 @@
 package br.com.criadouropicinini.domain.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,7 +15,7 @@ import java.time.OffsetDateTime;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "passaro")
-public class Passaro {
+public class Passaro{
 
     @EqualsAndHashCode.Include
     @Id
@@ -74,10 +75,13 @@ public class Passaro {
     @Column(name = "causa_obito", nullable = false)
     private String causaObito;
 
-   /* @Column(name = "passaro_pai_id")
-    private int passaroPaiId ;
-    @Column(name = "passaro_mae_id")
-    private int passaroMaeId;*/
+    @ManyToOne
+    @JoinColumn(name = "passaro_pai_id")
+    private Passaro passaroPai ;
+    @ManyToOne
+    @JoinColumn(name = "passaro_mae_id")
+    private Passaro passaroMae;
+
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente  cliente;
@@ -91,7 +95,5 @@ public class Passaro {
 
     @Column(name = "observacao")
     private String observacao;
-
-
 
 }

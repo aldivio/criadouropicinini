@@ -3,11 +3,10 @@ package br.com.criadouropicinini.api.controlles;
 
 import br.com.criadouropicinini.api.assembler.PassaroInputDisassembler;
 import br.com.criadouropicinini.api.assembler.PassaroModelAssembler;
-import br.com.criadouropicinini.api.dtos.input.ClienteInput;
+import br.com.criadouropicinini.api.assembler.PassaroResumidoInputDisassembler;
 import br.com.criadouropicinini.api.dtos.input.PassaroInput;
-import br.com.criadouropicinini.api.dtos.model.ClienteModel;
+import br.com.criadouropicinini.api.dtos.input.PassaroResumidoInput;
 import br.com.criadouropicinini.api.dtos.model.PassaroModel;
-import br.com.criadouropicinini.domain.models.Cliente;
 import br.com.criadouropicinini.domain.models.Passaro;
 import br.com.criadouropicinini.domain.repositories.PassaroRepository;
 import br.com.criadouropicinini.domain.services.PassaroService;
@@ -36,6 +35,9 @@ public class PassaroController {
     @Autowired
     private PassaroModelAssembler passaroModelAssembler;
 
+    @Autowired
+    private PassaroResumidoInputDisassembler passaroResumidoInputDisassembler;
+
 
     @GetMapping("/{passaroId}")
     public Passaro buscaById(@PathVariable Long passaroId) {
@@ -57,10 +59,10 @@ public class PassaroController {
 
     @PutMapping("/{passaroId}")
     public PassaroModel update(@PathVariable Long passaroId,
-                               @RequestBody @Valid PassaroInput passaroInput) {
+                               @RequestBody @Valid PassaroResumidoInput passaroInput) {
         Passaro passaroCurrent = passaroService.consultaById(passaroId);
-        passaroInputDisassembler.copyToDomainObjtect(passaroInput,passaroCurrent);
-        passaroCurrent = passaroService.save(passaroCurrent);
+        passaroResumidoInputDisassembler.copyToDomainObjtect(passaroInput,passaroCurrent);
+        passaroCurrent = passaroService.update(passaroCurrent);
         return passaroModelAssembler.toModel(passaroCurrent);
    }
 

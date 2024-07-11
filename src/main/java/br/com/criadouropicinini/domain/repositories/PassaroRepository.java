@@ -12,5 +12,4 @@ public interface PassaroRepository extends JpaRepository<Passaro, Long> {
 
 
     Optional<Passaro> findByAnilha(String anilha);
-
 }

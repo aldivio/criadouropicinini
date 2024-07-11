@@ -1,17 +1,10 @@
 package br.com.criadouropicinini.api.dtos.input;
 
-import br.com.criadouropicinini.domain.models.Cliente;
-import br.com.criadouropicinini.domain.models.Clube;
-import br.com.criadouropicinini.domain.models.Sexo;
-import br.com.criadouropicinini.domain.models.Situacao;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import br.com.criadouropicinini.domain.models.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -48,8 +41,8 @@ public class PassaroInput {
     private OffsetDateTime dataSaida;
     private OffsetDateTime dataObito;
     private String causaObito;
-//   private int passaroPaiId ;
-//    private int passaroMaeId;
+    private PassaroPaiInput passaroPai ;
+    private PassaroMaeInput passaroMae;
     private ClienteIdInput cliente;
     private BigDecimal numeroCtp;
     private Situacao situacao;

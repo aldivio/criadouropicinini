@@ -24,5 +24,7 @@ public class Clube {
     private String nome;
 
 
-
+    public Clube(Long id) {
+        this.id = id;
+    }
 }

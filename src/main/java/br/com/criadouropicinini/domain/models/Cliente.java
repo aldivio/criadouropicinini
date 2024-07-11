@@ -46,4 +46,8 @@ public class Cliente {
     @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Passaro> passaros = new ArrayList<>();
+
+    public Cliente(Long id) {
+        this.id= id;
+    }
 }

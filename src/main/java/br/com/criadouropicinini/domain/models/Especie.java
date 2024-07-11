@@ -22,4 +22,8 @@ public class Especie {
     private String nome;
     @Column(name = "nome_cientifico")
     private String nomeCientifico;
+
+    public Especie(Long id) {
+        this.id = id;
+    }
 }
