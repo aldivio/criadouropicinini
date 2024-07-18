@@ -1,25 +1,26 @@
-package br.com.criadouropicinini.api.dtos.input;
+package br.com.criadouropicinini.api.dtos.model;
 
 import br.com.criadouropicinini.domain.models.Sexo;
 import br.com.criadouropicinini.domain.models.Situacao;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
-import java.util.Date;
-
 
 @Getter
 @Setter
-public class PassaroResumidoInput {
+public class PassaroResumoModel {
 
-
+    private Long id;
+    private EspecieResumoModel especie;
+    private FederacaoResumoModel federacao;
+    private ClubeResumoModel clube;
+    private CriadorResumoModel criador;
+    private String numeroAnel;
+    private String ano;
+    private String tamanhoAnel;
+    private String anilha;
     private String nome;
     private Sexo sexo;
     private int numeroSexagem;
@@ -28,10 +29,14 @@ public class PassaroResumidoInput {
     private OffsetDateTime dataSaida;
     private OffsetDateTime dataObito;
     private String causaObito;
-    private PassaroPaiInput passaroPai ;
-    private PassaroMaeInput passaroMae;
+    private PassaroPaiResumoModel passaroPai;
+    private PassaroMaeResumoModel passaroMae;
+    private ClienteResumoModel cliente;
+
     private BigDecimal numeroCtp;
     private Situacao situacao;
+
     private String observacao;
+
 
 }

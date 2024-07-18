@@ -4,9 +4,11 @@ package br.com.criadouropicinini.api.controlles;
 import br.com.criadouropicinini.api.assembler.PassaroInputDisassembler;
 import br.com.criadouropicinini.api.assembler.PassaroModelAssembler;
 import br.com.criadouropicinini.api.assembler.PassaroResumidoInputDisassembler;
+import br.com.criadouropicinini.api.assembler.PassaroResumoModelAssembler;
 import br.com.criadouropicinini.api.dtos.input.PassaroInput;
 import br.com.criadouropicinini.api.dtos.input.PassaroResumidoInput;
 import br.com.criadouropicinini.api.dtos.model.PassaroModel;
+import br.com.criadouropicinini.api.dtos.model.PassaroResumoModel;
 import br.com.criadouropicinini.domain.models.Passaro;
 import br.com.criadouropicinini.domain.repositories.PassaroRepository;
 import br.com.criadouropicinini.domain.services.PassaroService;
@@ -38,6 +40,9 @@ public class PassaroController {
     @Autowired
     private PassaroResumidoInputDisassembler passaroResumidoInputDisassembler;
 
+    @Autowired
+    private PassaroResumoModelAssembler passaroResumoModelAssembler;
+
 
     @GetMapping("/{passaroId}")
     public Passaro buscaById(@PathVariable Long passaroId) {
@@ -45,9 +50,9 @@ public class PassaroController {
     }
 
     @GetMapping
-    public List<Passaro> list() {
+    public List<PassaroResumoModel> list() {
         List<Passaro> passaroTotal = passaroRepository.findAll();
-        return passaroRepository.findAll();
+        return passaroResumoModelAssembler.toCollectionModel(passaroRepository.findAll());
     }
 
     @PostMapping

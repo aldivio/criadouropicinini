@@ -9,7 +9,9 @@ public class ModelMapperConfig {
 
     @Bean
     public ModelMapper modelMapper() {
-        return new ModelMapper();
+        var modelMapper = new ModelMapper();
+        return modelMapper;
     }
+
 
 }

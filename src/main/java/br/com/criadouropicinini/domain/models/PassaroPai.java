@@ -22,6 +22,8 @@ public class PassaroPai {
     @Id
     private Long id;
 
+    private String nome;
+
     @JsonIgnore
     @OneToMany(mappedBy = "passaroPai")
     private List<Passaro> filhos = new ArrayList<>();
