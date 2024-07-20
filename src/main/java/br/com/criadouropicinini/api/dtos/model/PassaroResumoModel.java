@@ -35,7 +35,6 @@ public class PassaroResumoModel {
 
     private BigDecimal numeroCtp;
     private Situacao situacao;
-
     private String observacao;
 
 
