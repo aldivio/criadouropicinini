@@ -21,8 +21,8 @@ public class PassaroResumidoInput {
 
 
     private String nome;
-    private Sexo sexo;
-    private int numeroSexagem;
+  //  private Sexo sexo;
+  //  private int numeroSexagem;
     private OffsetDateTime dataNascimento;
     private OffsetDateTime dataAquisicao;
     private OffsetDateTime dataSaida;

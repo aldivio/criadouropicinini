@@ -32,8 +32,8 @@ public class CriadorController {
 
 
     @GetMapping("/{criadorId}")
-    public Criador buscaById(@PathVariable Long ciradorId) {
-        return criadorService.consultaById(ciradorId);
+    public Criador buscaById(@PathVariable Long criadorId) {
+        return criadorService.consultaById(criadorId);
     }
 
     @GetMapping

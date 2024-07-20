@@ -1,14 +1,13 @@
 package br.com.criadouropicinini.api.controlles;
 
 
-import br.com.criadouropicinini.api.assembler.PassaroInputDisassembler;
-import br.com.criadouropicinini.api.assembler.PassaroModelAssembler;
-import br.com.criadouropicinini.api.assembler.PassaroResumidoInputDisassembler;
-import br.com.criadouropicinini.api.assembler.PassaroResumoModelAssembler;
+import br.com.criadouropicinini.api.assembler.*;
 import br.com.criadouropicinini.api.dtos.input.PassaroInput;
 import br.com.criadouropicinini.api.dtos.input.PassaroResumidoInput;
+import br.com.criadouropicinini.api.dtos.input.PassaroSexagemInput;
 import br.com.criadouropicinini.api.dtos.model.PassaroModel;
 import br.com.criadouropicinini.api.dtos.model.PassaroResumoModel;
+import br.com.criadouropicinini.api.dtos.model.PassaroSexagemModel;
 import br.com.criadouropicinini.domain.models.Passaro;
 import br.com.criadouropicinini.domain.repositories.PassaroRepository;
 import br.com.criadouropicinini.domain.services.PassaroService;
@@ -43,6 +42,11 @@ public class PassaroController {
     @Autowired
     private PassaroResumoModelAssembler passaroResumoModelAssembler;
 
+    @Autowired
+    private PassaroSexagemInputDisassembler passaroSexagemInputDisassembler;
+
+    @Autowired
+    private PassaroSexagemModelAssembler passaroSexagemModelAssembler;
 
     @GetMapping("/{passaroId}")
     public Passaro buscaById(@PathVariable Long passaroId) {
@@ -66,10 +70,19 @@ public class PassaroController {
     public PassaroModel update(@PathVariable Long passaroId,
                                @RequestBody @Valid PassaroResumidoInput passaroInput) {
         Passaro passaroCurrent = passaroService.consultaById(passaroId);
-        passaroResumidoInputDisassembler.copyToDomainObjtect(passaroInput,passaroCurrent);
+        passaroResumidoInputDisassembler.copyToDomainObjtect(passaroInput, passaroCurrent);
         passaroCurrent = passaroService.update(passaroCurrent);
         return passaroModelAssembler.toModel(passaroCurrent);
-   }
+    }
+
+    @PutMapping("/{passaroId}/sexagem")
+    public PassaroSexagemModel atualizaSexagem(@PathVariable Long passaroId,
+                                               @RequestBody @Valid PassaroSexagemInput passaroSexagemInput) {
+        Passaro passaroCurrent = passaroService.consultaById(passaroId);
+        passaroSexagemInputDisassembler.copyToDomainObjtect(passaroSexagemInput, passaroCurrent);
+        passaroCurrent = passaroService.update(passaroCurrent);
+        return passaroSexagemModelAssembler.toModel(passaroCurrent);
+    }
 
     @DeleteMapping("/{passaroId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
