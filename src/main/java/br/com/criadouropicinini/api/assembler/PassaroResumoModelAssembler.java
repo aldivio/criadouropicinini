@@ -14,6 +14,8 @@ public class PassaroResumoModelAssembler {
     @Autowired
     private ModelMapper modelMapper;
 
+
+
     public PassaroResumoModel toModel(Passaro passaro) {
         return modelMapper.map(passaro, PassaroResumoModel.class);
     }

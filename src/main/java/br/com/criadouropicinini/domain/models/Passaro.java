@@ -78,12 +78,17 @@ public class Passaro{
     @Column(name = "causa_obito", nullable = false)
     private String causaObito;
 
+
     @ManyToOne
     @JoinColumn(name = "passaro_pai_id")
     private Passaro passaroPai ;
+
+
     @ManyToOne
     @JoinColumn(name = "passaro_mae_id")
     private Passaro passaroMae;
+
+
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
@@ -99,7 +104,5 @@ public class Passaro{
     @Column(name = "observacao")
     private String observacao;
 
- /// comentario
-    //
 
 }
