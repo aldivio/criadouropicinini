@@ -126,7 +126,9 @@ POST/passaros
 
 PUT/passaros/{id}
 
-DELETE/passaros/id
+DELETE/passaros/{id}
+
+PUT/passaros/{id}/sexagem
 
 ```
 
